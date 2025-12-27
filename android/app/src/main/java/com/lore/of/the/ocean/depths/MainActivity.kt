@@ -1,4 +1,4 @@
-package com.loreoftheoceandepths
+package com.lore.of.the.ocean.depths
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate
