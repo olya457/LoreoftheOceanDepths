@@ -1,4 +1,4 @@
-package com.lore.of.the.ocean.depths
+package com.echoesoftheprairie
 
 import android.app.Application
 import com.facebook.react.PackageList

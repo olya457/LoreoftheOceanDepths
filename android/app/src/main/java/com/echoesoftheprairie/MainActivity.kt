@@ -1,4 +1,4 @@
-package com.lore.of.the.ocean.depths
+package com.echoesoftheprairie
 
 import com.facebook.react.ReactActivity
 import com.facebook.react.ReactActivityDelegate

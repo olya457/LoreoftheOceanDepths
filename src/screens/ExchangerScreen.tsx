@@ -41,7 +41,7 @@ export default function ExchangerScreen() {
   }, []);
 
   return (
-    <ImageBackground source={require('../assets/background1.png')} style={styles.bg}>
+    <ImageBackground source={require('../assets/background.png')} style={styles.bg}>
       <View style={[styles.header, { marginTop: insets.top + 10 }]}>
         <Pressable 
           onPress={() => navigation.goBack()} 

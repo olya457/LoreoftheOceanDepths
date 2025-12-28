@@ -22,7 +22,7 @@ const { height: H } = Dimensions.get('window');
 const IS_SMALL = H < 750;
 const IS_TINY = H < 690;
 
-const BG = require('../assets/background1.png');
+const BG = require('../assets/background.png');
 const ICON_BACK = require('../assets/back.png');
 const LOGO = require('../assets/logo.png');
 

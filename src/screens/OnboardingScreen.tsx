@@ -21,7 +21,7 @@ const { width: W, height: H } = Dimensions.get('window');
 const IS_SMALL = H < 750;
 const IS_TINY = H < 690;
 
-const BG = require('../assets/background1.png');
+const BG = require('../assets/background.png');
 
 const IMG_1 = require('../assets/onboard_1.png');
 const IMG_2 = require('../assets/onboard_2.png');

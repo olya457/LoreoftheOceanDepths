@@ -18,7 +18,7 @@ type Nav = NativeStackNavigationProp<RootStackParamList>;
 const { height: H } = Dimensions.get('window');
 const IS_SMALL = H < 750;
 
-const BG = require('../assets/background1.png');
+const BG = require('../assets/background.png');
 const MERMAID = require('../assets/mermaid_card.png');
 const POSEIDON = require('../assets/poseidon_card.png');
 

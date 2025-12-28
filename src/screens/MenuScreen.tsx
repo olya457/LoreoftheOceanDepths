@@ -29,7 +29,7 @@ const s = (n: number) => {
   return Math.round(n * k);
 };
 
-const BG = require('../assets/background1.png');
+const BG = require('../assets/background.png');
 const LOGO = require('../assets/logo.png');
 const ICON_COIN = require('../assets/coin.png');
 
