@@ -42,7 +42,7 @@ export default function OnboardingScreen() {
     () => [
       {
         image: IMG_1,
-        title: 'Welcome to the\nLORE of the Ocean DEPTHS',
+        title: 'Welcome to the\nEchoes of the Prairie',
         body: "Use Poseidon's trident to\ncollect underwater treasures!",
         button: 'Interesting!',
       },
