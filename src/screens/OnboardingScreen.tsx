@@ -9,6 +9,7 @@ import {
   Dimensions,
   Animated,
   Easing,
+  Platform,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
@@ -64,6 +65,7 @@ export default function OnboardingScreen() {
 
   const [index, setIndex] = useState(0);
   const page = pages[index];
+
   const fade = useRef(new Animated.Value(0)).current;
   const up = useRef(new Animated.Value(14)).current;
   const scale = useRef(new Animated.Value(0.985)).current;
@@ -108,18 +110,27 @@ export default function OnboardingScreen() {
   };
 
   const CARD_W = Math.min(360, W - 44);
-  const bottomGap = 36;
-  const btnBottom = insets.bottom + bottomGap;
-  const CONTENT_SHIFT = 60;
+
+  const BTN_H = 54;
+  const BASE_BOTTOM_GAP = 36;
+  const ANDROID_LIFT = Platform.OS === 'android' ? 20 : 0;
+  const SAFE_GAP = 20;
+
+  const bottomPadForButton = insets.bottom + BASE_BOTTOM_GAP + ANDROID_LIFT;
+  const reservedBottomSpace = BTN_H + bottomPadForButton + SAFE_GAP;
+
+  const ANDROID_CARD_UP = Platform.OS === 'android' ? -50 : 0;
+
   const heroH = IS_TINY ? 360 : IS_SMALL ? 430 : 520;
   const cardPadV = IS_TINY ? 14 : 18;
   const titleSize = IS_TINY ? 16 : 18;
   const bodySize = IS_TINY ? 13 : 14;
-  const cardTranslateY = Animated.add(up, 30);
+
+  const cardTranslateY = Animated.add(up, 30 + ANDROID_CARD_UP);
 
   return (
     <ImageBackground source={BG} style={styles.bg} resizeMode="cover">
-      <View style={[styles.contentWrap, { paddingTop: 44 + CONTENT_SHIFT }]}>
+      <View style={[styles.contentWrap, { paddingTop: 44 + 60, paddingBottom: reservedBottomSpace }]}>
         <Animated.View
           style={[
             styles.heroWrap,
@@ -131,6 +142,7 @@ export default function OnboardingScreen() {
         >
           <Image source={page.image} style={{ width: W, height: heroH }} resizeMode="contain" />
         </Animated.View>
+
         <Animated.View
           style={[
             styles.card,
@@ -140,6 +152,7 @@ export default function OnboardingScreen() {
               paddingBottom: cardPadV,
               opacity: fade,
               transform: [{ translateY: cardTranslateY }],
+              marginTop: -60 + ANDROID_CARD_UP,
             },
           ]}
         >
@@ -147,8 +160,16 @@ export default function OnboardingScreen() {
           <Text style={[styles.cardText, { fontSize: bodySize }]}>{page.body}</Text>
         </Animated.View>
       </View>
-      <View pointerEvents="box-none" style={[styles.bottomArea, { paddingBottom: btnBottom }]}>
-        <Pressable style={({ pressed }) => [styles.btn, pressed && { opacity: 0.9 }]} onPress={onPressButton}>
+
+      <View pointerEvents="box-none" style={styles.bottomArea}>
+        <Pressable
+          style={({ pressed }) => [
+            styles.btn,
+            { marginBottom: bottomPadForButton },
+            pressed && { opacity: 0.9 },
+          ]}
+          onPress={onPressButton}
+        >
           <Text style={styles.btnText}>{page.button}</Text>
         </Pressable>
       </View>
@@ -170,7 +191,6 @@ const styles = StyleSheet.create({
   },
 
   card: {
-    marginTop: -60,
     paddingHorizontal: 18,
     borderRadius: 18,
     backgroundColor: 'rgba(20, 60, 115, 0.92)',
